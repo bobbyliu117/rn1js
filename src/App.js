@@ -3,6 +3,7 @@ import {StyleSheet,View,Text,Button,StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab1 = ({route,navigation}) => (
   <View style={styles.container}>
@@ -38,8 +39,24 @@ const Stack2 = ({route, navigation}) => {
 }
 
 const Tab = createBottomTabNavigator();
+const tapStyle = ({ route }) => ({
+  tabBarIcon: ({ focused, color, size }) => {
+    let iconName;
+
+    if (route.name === 'Tab1') {
+      iconName = focused
+        ? 'ios-information-circle'
+        : 'ios-information-circle-outline';
+    } else if (route.name === 'Tab2') {
+      iconName = focused ? 'ios-list-box' : 'ios-list';
+    }
+
+    // You can return any component that you like here!
+    return <Ionicons name={iconName} size={size} color={color} />;
+  },
+});
 const FirstScreen = () => (
-  <Tab.Navigator>
+  <Tab.Navigator screenOptions={tapStyle}>
     <Tab.Screen name="Tab1" component={Tab1} initialParams={{data: '@ Tab1'}}/>
     <Tab.Screen name="Tab2" component={Tab2} />
   </Tab.Navigator>
