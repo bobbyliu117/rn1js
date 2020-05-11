@@ -9,3 +9,4 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
+/captures
