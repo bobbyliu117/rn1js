@@ -1,9 +1,7 @@
 import React, {useRef,useEffect,useState} from 'react';
-import {StyleSheet,View,Text,Animated, PanResponder, Dimensions, LayoutAnimation} from 'react-native';
-import {Card, Button} from 'react-native-elements';
-
-const SCREEN_W = Dimensions.get('window').width;
-const SWIPE_THRESHOLD = 0.25 * SCREEN_W;
+import {View,Text,Animated, PanResponder, LayoutAnimation, Button} from 'react-native';
+import { Image,useWindowDimensions } from 'react-native';
+import {card,bg_white, m1, h3, p1, px1, myb1} from '../../styles';
 
 const DATA = [
   { id: 1, text: 'Card #1', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
@@ -16,28 +14,23 @@ const DATA = [
   { id: 8, text: 'Card #8', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
 ];
 
-const Ball = () => {
-  const moveAnim = useRef(new Animated.ValueXY(0,0)).current;
-  useEffect(()=>{
-    Animated.spring(moveAnim, {toValue:{x:200,y:500}, velocity:1, useNativeDriver:false}).start(); 
-  },[]);
-  return <Animated.View style={moveAnim.getLayout()}>
-    <View style={{width:60,height:60,borderRadius:30,borderWidth:30,borderColor:'black'}} />
-  </Animated.View>
-}
-
 const Item = ({item,onSwipeLeft,onSwipeRight,offset}) => {
+  // Screen size
+  const screenW = useWindowDimensions().width;
+  // Animation
   let anim = useRef(new Animated.Value(0)).current;
+  const rotate = anim.interpolate({inputRange:[-screenW/2, 0, screenW/2],outputRange:['-30deg','0deg','30deg']})
+  // Gesture
   const pan = useRef(PanResponder.create({
     onStartShouldSetPanResponder: (evt,gestureState) => true,
     onPanResponderMove: (evt, gestureState) => {
       anim.setValue(gestureState.dx);
     },
     onPanResponderRelease: (evt, gestureState) => {
-      if (gestureState.dx > SWIPE_THRESHOLD) {
-        Animated.timing(anim, {toValue: SCREEN_W*1.2, duration: 250, useNativeDriver:false}).start(onSwipeLeft);
-      } else if (gestureState.dx < -SWIPE_THRESHOLD) {
-        Animated.timing(anim, {toValue: -SCREEN_W*1.2, duration: 250,useNativeDriver:false}).start(onSwipeRight);
+      if (gestureState.dx > screenW/4) {
+        Animated.timing(anim, {toValue: screenW*2, duration: 250, useNativeDriver:false}).start(onSwipeLeft);
+      } else if (gestureState.dx < -screenW/4) {
+        Animated.timing(anim, {toValue: -screenW*2, duration: 250,useNativeDriver:false}).start(onSwipeRight);
       } else {
         Animated.spring(anim, {toValue:0, useNativeDriver:false}).start();
       }
@@ -45,12 +38,13 @@ const Item = ({item,onSwipeLeft,onSwipeRight,offset}) => {
   })).current;
 
   const {text, uri} = item;
-  const rotate = anim.interpolate({inputRange:[-SCREEN_W/2, 0, SCREEN_W/2],outputRange:['-30deg','0deg','30deg']})
-  return <Animated.View style={{left: anim, transform: [{rotate}], position: 'absolute', width: SCREEN_W, top: offset}}>
-    <Card title={text} image={{uri}} {...pan.panHandlers}>
-      <Text style={{marginBottom:8}}>Customized description #1211</Text>
-      <Button icon={{name: 'code', color:'white'}} buttonStyle={{backgroundColor:'#f00'}} title='View Now!' />
-    </Card>
+  return <Animated.View style={{left: anim, transform: [{rotate}], position: 'absolute', width: screenW, top: offset}}>
+    <View style={[card,bg_white,m1]} {...pan.panHandlers}>
+      <Image source={{uri}} style={{minHeight:180}} resizeMode='cover'/>
+      <Text style={[h3,p1]}>{text}</Text>
+      <Text style={[px1,myb1]}>Customized description #1211</Text>
+      <Button title='View Now!' />
+    </View>
   </Animated.View>
 }
 

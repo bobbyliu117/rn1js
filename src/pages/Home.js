@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-
-const TWILLIO_NUMBER = '+14302314759'
+import { View, Button, StatusBar } from 'react-native';
 
 const Home = ({navigation}) => {
   return (
     <View>
+      <StatusBar barStyle='dark-content' />
       <Button title='To Animated' onPress={()=>navigation.navigate('AnimatedScreen')} />
     </View>
   )
