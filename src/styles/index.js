@@ -16,14 +16,12 @@ export const c_green_light = '#A4C3B2';
 export const c_green_dark = '#6B9080';
 export const c_red_light = '#ef5d60';
 export const theme_white = {backgroundColor: c_white, color: c_black}
-export const theme_primary = {backgroundColor: c_green_dark, color: c_white}
-export const theme_accent_outline = {backgroundColor: 'white', color: c_red_light}
 
 // - - - Utils - - -
 export const center = {justifyContent: 'center', alignItems: 'center'}
+export const corner = r => ({borderRadius: r});
 const cornerRadius = (r,color) => ({borderRadius:r,borderWidth:r/2,borderColor:color});
-export const corner_primary = cornerRadius(4,c_green_dark);
-export const corner_accent = cornerRadius(6, c_red_light);
+export const corner_accent = cornerRadius(5, c_red_light);
 
 // - - - Distance - - -
 export const m1 = { margin: 8 }
