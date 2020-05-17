@@ -2,4 +2,7 @@
 <resources>
     <color name="c_primary_black">#3E363F</color>
     <color name="c_primary_white">#fffce8</color>
+    <color name="c_green_light">#A4C3B2</color>
+    <color name="c_green_dark">#6B9080</color>
+    <color name="c_red_light">#ef5d60</color>
 </resources>

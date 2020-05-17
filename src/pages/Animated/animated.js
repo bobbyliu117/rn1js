@@ -1,7 +1,8 @@
 import React, {useRef,useEffect,useState} from 'react';
 import {View,Text,Animated, PanResponder, LayoutAnimation, Button} from 'react-native';
 import { Image,useWindowDimensions } from 'react-native';
-import {card,bg_white, m1, h3, p1, px1, myb1} from '../../styles';
+import {card, m1, h3, p1, px1, myb1, theme_white} from '../../styles';
+import ButtonA from '../../components/ButtonA';
 
 const DATA = [
   { id: 1, text: 'Card #1', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
@@ -39,11 +40,11 @@ const Item = ({item,onSwipeLeft,onSwipeRight,offset}) => {
 
   const {text, uri} = item;
   return <Animated.View style={{left: anim, transform: [{rotate}], position: 'absolute', width: screenW, top: offset}}>
-    <View style={[card,bg_white,m1]} {...pan.panHandlers}>
-      <Image source={{uri}} style={{minHeight:180}} resizeMode='cover'/>
+    <View style={[card,theme_white,m1]} {...pan.panHandlers}>
+      <Image source={{uri}} style={{minHeight:180}} resizeMode='cover' />
       <Text style={[h3,p1]}>{text}</Text>
       <Text style={[px1,myb1]}>Customized description #1211</Text>
-      <Button title='View Now!' />
+      <ButtonA title='Detail' onPress={()=>console.log(text)} />
     </View>
   </Animated.View>
 }
