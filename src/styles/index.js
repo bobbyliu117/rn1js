@@ -1,13 +1,14 @@
 import {StyleSheet, Platform} from 'react-native';
 
-const cardIOS = {
+export const isIOS = Platform.OS === 'ios';
+
+export const card = {
   shadowOffset: {width: 0, height: 2},
   shadowOpacity: 0.5,
   shadowRadius: 4,
   shadowColor: '#ccc',
+  elevation: 4
 }
-const cardAndroid = { elevation: 4 }
-export const card = Platform.OS === 'ios' ? cardIOS : cardAndroid;
 
 // - - - Colors - - -
 const c_black = '#3E363F';
@@ -27,6 +28,7 @@ export const center = {justifyContent: 'center', alignItems: 'center'}
 export const corner = r => ({borderRadius: r});
 const cornerRadius = (r,color) => ({borderRadius:r,borderWidth:r/2,borderColor:color});
 export const corner_accent = cornerRadius(5, c_red_light);
+export const underline = c => ({borderBottomWidth:StyleSheet.hairlineWidth,borderColor:c});
 
 // - - - Distance - - -
 export const m1 = { margin: 8 }
@@ -37,6 +39,7 @@ export const myb2 = { marginBottom: 16 }
 export const p1 = { padding: 8 }
 export const p2 = {padding: 16}
 export const px1 = { paddingHorizontal: 8 }
+export const px2 = { paddingHorizontal: 16 }
 export const py1 = {paddingVertical:8}
 
 // - - - Text - - -

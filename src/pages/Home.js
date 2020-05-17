@@ -6,7 +6,8 @@ import ButtonB from '../components/ButtonB';
 import ModalA from '../components/ModalA';
 
 const DATA = [
-  {id: 1, page: 'AnimatedScreen'}
+  {id: 1, page: 'AnimatedScreen'},
+  {id: 2, page: 'ScrollScreen'}
 ];
 
 const HomeItem = ({item, onPress}) => <ButtonA onPress={onPress} title={item.page} />
