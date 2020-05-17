@@ -8,7 +8,7 @@ export default ({title, message, isOpen, close}) => {
 
   return (
     <Modal style={[{marginTop:180}]} animationType='fade' visible={isOpen} statusBarTranslucent={true} transparent={true}>
-      <View style={[center,{flex:1,backgroundColor:c_black_trans}]}>
+      <View onStartShouldSetResponder={()=>true} onResponderRelease={close} style={[center,{flex:1,backgroundColor:c_black_trans}]}>
         <View style={[card,p2,theme_white,corner(8),{minWidth:220}]}>
           <Text style={[h2,myb1]}>{title}</Text>
           <Text style={[txt,myb2]}>{message}</Text>
