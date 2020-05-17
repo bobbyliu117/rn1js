@@ -44,7 +44,7 @@ const Item = ({item,onSwipeLeft,onSwipeRight,offset}) => {
       <Image source={{uri}} style={{minHeight:180}} resizeMode='cover' />
       <Text style={[h3,p1]}>{text}</Text>
       <Text style={[px1,myb1]}>Customized description #1211</Text>
-      <ButtonA title='Detail' onPress={()=>console.log(text)} />
+      <ButtonA title='Detail' marginH={8} onPress={()=>console.log(text)} />
     </View>
   </Animated.View>
 }
@@ -58,7 +58,7 @@ const AnimatedScreen = () => {
   return (
     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
       { currentIndex === DATA.length ? <Text style={{color:'#ccc',fontSize:18}}>NO MORE</Text> :
-      DATA.map((item, index) => <Item key={item.id} item={item} onSwipeLeft={()=>swipe('left', item)} onSwipeRight={()=>swipe('right',item)} offset={(index-currentIndex)*10} />).reverse()}
+      DATA.map((item, index) => <Item key={item.id} item={item} onSwipeLeft={()=>swipe('left', item)} onSwipeRight={()=>swipe('right',item)} offset={(index-currentIndex)*6} />).reverse()}
     </View>
   );
 }
