@@ -7,12 +7,12 @@ import { UIManager } from 'react-native';
 import ScrollScreen from './pages/scroll/ScrollScreen';
 
 const Stack = createStackNavigator();
-const screenHome = {name: HomeScreen.name, component: HomeScreen}
-const screenAnimated = {name: AnimatedScreen.name, component: AnimatedScreen}
-const screenScroll = {name: ScrollScreen.name, component: ScrollScreen}
+const screenHome = {name: 'HomeScreen', component: HomeScreen}
+const screenAnimated = {name: 'AnimatedScreen', component: AnimatedScreen}
+const screenScroll = {name: 'ScrollScreen', component: ScrollScreen}
 
 const Root = () => (
-  <Stack.Navigator initialRouteName={HomeScreen.name}>
+  <Stack.Navigator initialRouteName={'HomeScreen'}>
     <Stack.Screen {...screenHome} />
     <Stack.Screen {...screenAnimated} />
     <Stack.Screen {...screenScroll} />
